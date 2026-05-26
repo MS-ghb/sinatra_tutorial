@@ -51,4 +51,16 @@ get '/api/greet/:name' do
   { message: "こんにちは、#{params[:name]}さん!"}.to_json
 end
 
+posts = []
+
+get '/posts' do
+  erb :posts, locals: {posts: posts}
+end
+
+post '/posts' do
+  posts << {title: params[:title], body: params[:body]}
+  redirect '/posts'
+end
+
+
 
