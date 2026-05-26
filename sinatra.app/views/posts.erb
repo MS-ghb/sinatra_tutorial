@@ -1,0 +1,14 @@
+<!-- views/posts.erb -->
+<h2>投稿一覧</h2>
+<ul>
+  <% posts.each do |post| %>
+    <li><strong><%= post[:title] %></strong>: <%= post[:body] %></li>
+  <% end %>
+</ul>
+<form action="/posts" method="post">
+  <input type="text" name="title" placeholder="タイトル">
+  <input type="text" name="body" placeholder="本文">
+  <input type="submit" value="投稿">
+</form>
+
+
