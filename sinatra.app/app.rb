@@ -1,13 +1,17 @@
-require 'sinatra'
+require 'sinatra/base'
+# require 'sinatra'
 require 'sinatra/activerecord'
 
-set :database, {
-  adapter:  "mysql2",
-  host:     "localhost",
-  username: "root",          # Windowsの標準ユーザー名
-  password: "mysql2023", # 【重要】MySQLインストール時に決めたパスワードを入力
-  database: "sinatratest"
-}
+# モジュラー構造を設定　設定はその直下に置く
+class MyApp < Sinatra::Base
+
+  set :database, {
+    adapter:  "mysql2",
+    host:     "localhost",
+    username: "root",          # Windowsの標準ユーザー名
+    password: "mysql2023", # 【重要】MySQLインストール時に決めたパスワードを入力
+    database: "sinatratest"
+  }
 
 class User < ActiveRecord::Base; end
 
@@ -62,5 +66,8 @@ post '/posts' do
   redirect '/posts'
 end
 
+run! if app_file == $0
+
+end
 
 
